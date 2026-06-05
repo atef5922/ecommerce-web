@@ -15,7 +15,7 @@ export type CurrencyOption = {
 export type ServicePromise = {
   title: string;
   detail: string;
-  icon: "truck" | "shield" | "refresh" | "headphones";
+  icon: "shipping" | "order" | "savings" | "promotions" | "happy" | "support";
 };
 
 export type Category = {
@@ -33,6 +33,17 @@ export type Product = {
   rating: number;
   image: string;
   badge?: string;
+  category?: string;
+  color?: "Gold" | "Green" | "White" | "Blue" | "Pink" | "Black" | "Orange";
+  gallery?: string[];
+  isFeatured?: boolean;
+  isNew?: boolean;
+  isPopular?: boolean;
+  monthlyDeal?: boolean;
+  reviewCount?: number;
+  shortDescription?: string;
+  size?: "S" | "M" | "L" | "XL";
+  slug?: string;
 };
 
 export type CartItem = {
@@ -47,7 +58,7 @@ export type CartItem = {
 export type ShopProduct = Product & {
   category: string;
   designer: string;
-  color: "Gold" | "Green" | "White";
+  color: NonNullable<Product["color"]>;
   size: "S" | "M" | "L" | "XL";
 };
 

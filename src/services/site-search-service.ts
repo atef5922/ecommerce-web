@@ -1,3 +1,5 @@
+import { catalogProducts } from "@/models/product-catalog";
+
 export type SearchItem = {
   description: string;
   title: string;
@@ -6,49 +8,26 @@ export type SearchItem = {
   keywords: string;
 };
 
+const productSearchItems: SearchItem[] = catalogProducts.map((product) => ({
+  title: product.name,
+  href: `/product/${product.slug ?? product.id}`,
+  type: "Product",
+  description: `${product.brand} · ${product.category}`,
+  keywords: [
+    product.name,
+    product.brand,
+    product.category,
+    product.badge,
+    product.shortDescription,
+    product.color,
+    product.size,
+  ]
+    .filter(Boolean)
+    .join(" "),
+}));
+
 export const searchableItems: SearchItem[] = [
-  {
-    title: "Hydra Dew Skin Essence",
-    href: "/shop",
-    type: "Product",
-    description: "Serum essence by Mugnee Ritual",
-    keywords: "serum essence toner hydra dew mugnee ritual skincare glow",
-  },
-  {
-    title: "Renewal Peptide Cream",
-    href: "/shop",
-    type: "Product",
-    description: "Peptide moisturizer by Aurelia Lab",
-    keywords: "cream peptide renewal aurelia skincare moisturizer",
-  },
-  {
-    title: "Soft Veil Hand Balm",
-    href: "/shop",
-    type: "Product",
-    description: "Daily hand care by Flora Care",
-    keywords: "hand balm soft veil flora care lotion",
-  },
-  {
-    title: "Blue Clay Rescue Mask",
-    href: "/shop",
-    type: "Product",
-    description: "Clay mask by Mugnee Pure",
-    keywords: "mask clay blue rescue mugnee pure skincare",
-  },
-  {
-    title: "Gold Ritual Serum",
-    href: "/shop",
-    type: "Product",
-    description: "Premium serum by Mugnee Ritual",
-    keywords: "gold ritual serum skincare luxury mugnee",
-  },
-  {
-    title: "Mountain Soft Body Cream",
-    href: "/shop",
-    type: "Product",
-    description: "Body cream from Graphic Corner",
-    keywords: "mountain soft body cream graphic corner",
-  },
+  ...productSearchItems,
   {
     title: "Women",
     href: "/shop",

@@ -5,6 +5,7 @@ export class ShopController {
 
   getViewModel() {
     const model = this.shopService.getShopPage();
+    const maxPrice = Math.ceil(Math.max(...model.products.map((product) => product.price), 0) / 10) * 10;
     const countBy = (key: "color" | "size") =>
       Object.entries(
         model.products.reduce<Record<string, number>>((counts, product) => {
@@ -18,9 +19,9 @@ export class ShopController {
       colorFilters: countBy("color"),
       sizeFilters: countBy("size"),
       productCountLabel: `There are ${model.products.length} products`,
-      activeCategory: "Arts & Crafts",
-      priceRangeLabel: "$0 - $700",
-      cartTotal: "$57.99",
+      activeCategory: "All Categories",
+      priceRangeLabel: `$0 - $${maxPrice}`,
+      cartTotal: "$0.00",
     };
   }
 }

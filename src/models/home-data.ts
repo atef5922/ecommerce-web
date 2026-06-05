@@ -1,4 +1,5 @@
 import type { HomePageModel } from "./ecommerce";
+import { catalogProducts } from "./product-catalog";
 
 export const homePageModel: HomePageModel = {
   navigation: [
@@ -10,115 +11,34 @@ export const homePageModel: HomePageModel = {
     { label: "Articles", href: "/blog" },
   ],
   services: [
-    { title: "Free Shipping", detail: "On orders over $59", icon: "truck" },
-    { title: "Secure Payment", detail: "Protected checkout", icon: "shield" },
-    { title: "Easy Returns", detail: "14 day return window", icon: "refresh" },
-    { title: "Support Ready", detail: "Care experts online", icon: "headphones" },
+    { title: "Free Shipping", detail: "On orders over $59", icon: "shipping" },
+    { title: "Online Order", detail: "Fast checkout flow", icon: "order" },
+    { title: "Save Money", detail: "Daily value picks", icon: "savings" },
+    { title: "Promotions", detail: "Seasonal offers", icon: "promotions" },
+    { title: "Happy Sell", detail: "Trusted commerce", icon: "happy" },
+    { title: "24/7 Support", detail: "Care experts online", icon: "support" },
   ],
   categories: [
     {
-      name: "Women",
-      description: "Body care, bath essentials, and fragrance sets.",
+      name: "Printed Shirts",
+      description: "Statement shirts, resort prints, and everyday graphic styles.",
       image:
-        "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=520&q=80",
+        "https://images.unsplash.com/photo-1571945153237-4929e783af4a?auto=format&fit=crop&w=520&q=80",
     },
     {
-      name: "Men",
-      description: "Grooming staples, wash, serum, and daily skincare.",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=520&q=80",
-    },
-    {
-      name: "Health & Beauty",
-      description: "Targeted formulas for bright, calm, healthy skin.",
-      image:
-        "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=520&q=80",
-    },
-  ],
-  products: [
-    {
-      id: "p1",
-      name: "Hydra Dew Skin Essence",
-      brand: "Mugnee Ritual",
-      price: 21.99,
-      compareAt: 31.99,
-      rating: 5,
-      badge: "-31%",
+      name: "Skincare",
+      description: "Essences, creams, toners, and daily glow formulas.",
       image:
         "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=520&q=80",
     },
     {
-      id: "p2",
-      name: "Renewal Peptide Cream",
-      brand: "Aurelia Lab",
-      price: 27.5,
-      compareAt: 39.0,
-      rating: 5,
-      badge: "Hot",
-      image:
-        "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=520&q=80",
-    },
-    {
-      id: "p3",
-      name: "Soft Veil Hand Balm",
-      brand: "Flora Care",
-      price: 14.95,
-      compareAt: 18.95,
-      rating: 4,
+      name: "Body Care",
+      description: "Balms, lotions, and calm care for hands and body.",
       image:
         "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=520&q=80",
     },
-    {
-      id: "p4",
-      name: "Blue Clay Rescue Mask",
-      brand: "Mugnee Pure",
-      price: 19.99,
-      compareAt: 29.99,
-      rating: 5,
-      badge: "New",
-      image:
-        "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=520&q=80",
-    },
-    {
-      id: "p5",
-      name: "Mineral Body Souffle",
-      brand: "Cove & Salt",
-      price: 24.99,
-      rating: 4,
-      image:
-        "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=520&q=80",
-    },
-    {
-      id: "p6",
-      name: "Sea Glass Toner Mist",
-      brand: "Aqua Botanics",
-      price: 17.99,
-      compareAt: 25.5,
-      rating: 5,
-      badge: "-29%",
-      image:
-        "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=520&q=80",
-    },
-    {
-      id: "p7",
-      name: "Rice Milk Glow Lotion",
-      brand: "Mugnee Daily",
-      price: 22.0,
-      rating: 4,
-      image:
-        "https://images.unsplash.com/photo-1631730359585-38a4935cbec4?auto=format&fit=crop&w=520&q=80",
-    },
-    {
-      id: "p8",
-      name: "Calendula Calm Cleanser",
-      brand: "Herbal Muse",
-      price: 16.5,
-      compareAt: 21.0,
-      rating: 5,
-      image:
-        "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=520&q=80",
-    },
   ],
+  products: catalogProducts,
   promoTiles: [
     {
       title: "Silk-Luxe Jelly Body Polish",
