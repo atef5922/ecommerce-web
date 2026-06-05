@@ -19,12 +19,12 @@ export function AccountPageView() {
         </div>
       </div>
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
-        <div className="premium-card rounded-[28px] p-6 sm:p-8">
+      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8 lg:py-24">
+        <div className="premium-card rounded-[22px] p-5 sm:rounded-[28px] sm:p-8">
           <span className="grid h-14 w-14 place-items-center rounded-full bg-[#f5efdf] text-[#aa9737]">
             <UserCircle size={28} />
           </span>
-          <h1 className="mt-5 font-serif text-3xl font-bold uppercase">My Account</h1>
+          <h1 className="mt-5 font-serif text-2xl font-bold uppercase sm:text-3xl">My Account</h1>
           <p className="mt-3 text-sm leading-7 text-[#68717a]">
             Review your cart, continue shopping, or proceed to checkout. Sign-in is ready to connect when an auth
             service is added.
@@ -46,9 +46,9 @@ export function AccountPageView() {
           </div>
         </div>
 
-        <aside className="premium-card rounded-[28px] p-6 sm:p-8">
+        <aside className="premium-card rounded-[22px] p-5 sm:rounded-[28px] sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="font-serif text-2xl font-bold uppercase">Cart Summary</h2>
+            <h2 className="font-serif text-xl font-bold uppercase sm:text-2xl">Cart Summary</h2>
             <span className="inline-flex items-center gap-2 rounded-full bg-[#f5efdf] px-4 py-2 text-[12px] font-bold text-[#7d6d20]">
               <PackageCheck size={15} /> {itemCount} items
             </span>
@@ -78,7 +78,7 @@ export function AccountPageView() {
             <span className="text-[#aa9737]">{formatMoney(subtotal)}</span>
           </div>
           <Link
-            className="mt-7 inline-flex h-11 items-center justify-center rounded-full bg-[#aa9737] px-7 text-[12px] font-bold uppercase text-white hover:bg-[#8d7b28]"
+            className="mt-7 inline-flex h-11 w-full items-center justify-center rounded-full bg-[#aa9737] px-7 text-[12px] font-bold uppercase text-white hover:bg-[#8d7b28] sm:w-auto"
             href="/cart"
           >
             View Cart

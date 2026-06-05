@@ -27,12 +27,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 img {
   max-width: 100%;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  min-width: 0;
 }
 
 ::selection {
@@ -87,6 +99,14 @@ main {
   box-shadow: 0 12px 28px rgba(170, 151, 55, 0.22);
 }
 
+.mobile-friendly-form {
+  display: flex;
+}
+
+.mobile-brand-tile {
+  overflow-wrap: anywhere;
+}
+
 input,
 select,
 textarea {
@@ -100,6 +120,39 @@ textarea::placeholder {
 
 footer a:hover {
   color: var(--mugnee-gold);
+}
+
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .premium-card {
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(37, 42, 49, 0.07);
+  }
+
+  .premium-product-card {
+    max-width: none;
+    border-radius: 18px;
+    padding: 12px 12px 18px;
+  }
+
+  .mobile-friendly-form {
+    flex-direction: column;
+    overflow: visible;
+    border-radius: 18px;
+  }
+
+  .mobile-friendly-form input {
+    min-height: 48px;
+    width: 100%;
+  }
+
+  .mobile-friendly-form button {
+    min-height: 46px;
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

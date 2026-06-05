@@ -88,14 +88,14 @@ function SharedHeader() {
         </div>
       </div>
       <div>
-        <div className="mx-auto flex min-h-20 max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:flex-nowrap">
-          <Link className="group flex items-center gap-3" href="/">
-            <span className="grid h-12 w-12 place-items-center rounded-2xl border border-[#b29d3a]/70 bg-[#f8f3e5] font-serif text-2xl italic text-[#a99632] shadow-inner transition group-hover:rotate-[-4deg]">
+        <div className="mx-auto flex min-h-18 max-w-6xl flex-nowrap items-center justify-between gap-2 px-3 py-3 sm:min-h-20 sm:gap-3 sm:px-6 sm:py-4">
+          <Link className="group flex min-w-0 items-center gap-2 sm:gap-3" href="/">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-[#b29d3a]/70 bg-[#f8f3e5] font-serif text-xl italic text-[#a99632] shadow-inner transition group-hover:rotate-[-4deg] sm:h-12 sm:w-12 sm:text-2xl">
               M
             </span>
-            <span className="font-serif text-3xl italic leading-none text-[#9d8a2b]">
+            <span className="min-w-0 font-serif text-[1.55rem] italic leading-none text-[#9d8a2b] sm:text-3xl">
               Mugnee
-              <span className="block font-sans text-[10px] not-italic uppercase tracking-[0.3em] text-[#8a8a8a]">
+              <span className="block truncate font-sans text-[8px] not-italic uppercase tracking-[0.24em] text-[#8a8a8a] sm:text-[10px] sm:tracking-[0.3em]">
                 Multiple Limited
               </span>
             </span>
@@ -112,7 +112,7 @@ function SharedHeader() {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-2 text-[#343a40] sm:gap-3">
+          <div className="flex shrink-0 items-center gap-1.5 text-[#343a40] sm:gap-3">
             <button
               aria-expanded={searchOpen}
               aria-label="Search"
@@ -124,7 +124,7 @@ function SharedHeader() {
               {searchOpen ? <X size={19} /> : <Search size={19} />}
             </button>
             <Link
-              className="inline-flex items-center gap-2 rounded-full border border-[#eee7da] bg-white px-2 py-2 text-[12px] font-bold shadow-sm hover:border-[#aa9737] hover:text-[#aa9737] sm:px-4"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#eee7da] bg-white text-[12px] font-bold shadow-sm hover:border-[#aa9737] hover:text-[#aa9737] sm:h-auto sm:w-auto sm:justify-start sm:gap-2 sm:px-4 sm:py-2"
               href="/cart"
               onClick={closeTransientPanels}
               aria-label={`Cart with ${itemCount} items`}

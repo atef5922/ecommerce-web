@@ -98,7 +98,7 @@ export function ShopPageView({ viewModel }: Props) {
   return (
     <main className="premium-shell min-h-screen text-[#252a31]">
       <Breadcrumb />
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[265px_1fr] lg:py-24">
+      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-[265px_1fr] lg:gap-8 lg:py-24">
         <ShopSidebar
           activeCategory={viewModel.activeCategory}
           colorFilters={viewModel.colorFilters}
@@ -195,7 +195,7 @@ function ShopSidebar({
   const { formatMoney } = useCurrency();
 
   return (
-    <aside className="premium-card h-fit space-y-8 rounded-[26px] p-5">
+    <aside className="premium-card h-fit space-y-6 rounded-[22px] p-4 sm:space-y-8 sm:rounded-[26px] sm:p-5">
       <div className="rounded-2xl bg-[#252a31] px-5 py-4 text-sm font-bold text-white">
         <span className="inline-flex items-center gap-3">
           <Menu size={15} /> {activeCategory}
@@ -340,8 +340,8 @@ function Catalog({
       <div className="rounded-[26px] border border-[#eee7da] bg-white/80 px-6 py-5 shadow-sm">
         <h1 className="font-serif text-2xl font-bold uppercase tracking-[0.02em]">{activeCategory}</h1>
       </div>
-      <div className="mt-5 flex flex-col gap-4 rounded-[26px] border border-[#eee7da] bg-white/85 p-4 shadow-sm md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-wrap items-center gap-6">
+      <div className="mt-5 flex flex-col gap-4 rounded-[22px] border border-[#eee7da] bg-white/85 p-4 shadow-sm md:flex-row md:items-center md:justify-between md:rounded-[26px]">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-4">
             <button
               aria-label="Grid view"
@@ -380,10 +380,10 @@ function Catalog({
               value={searchQuery}
             />
           </label>
-          <label className="flex items-center gap-2 text-sm">
-            Sort By :
+          <label className="flex flex-col gap-2 text-sm sm:flex-row sm:items-center">
+            <span>Sort By :</span>
             <select
-              className="h-11 cursor-pointer rounded-full border border-[#e0e0e0] bg-white px-4 text-sm text-[#6c737c] outline-none transition focus:border-[#aa9737]"
+              className="h-11 w-full cursor-pointer rounded-full border border-[#e0e0e0] bg-white px-4 text-sm text-[#6c737c] outline-none transition focus:border-[#aa9737] sm:w-auto"
               onChange={(event) => onSortChange(event.target.value as SortMode)}
               value={sortMode}
             >
@@ -396,7 +396,7 @@ function Catalog({
         </div>
       </div>
       {products.length > 0 ? (
-        <div className={viewMode === "grid" ? "grid gap-x-8 gap-y-14 py-8 sm:grid-cols-2 xl:grid-cols-3" : "space-y-7 py-8"}>
+        <div className={viewMode === "grid" ? "grid gap-x-6 gap-y-9 py-8 sm:grid-cols-2 sm:gap-y-14 xl:grid-cols-3 xl:gap-x-8" : "space-y-7 py-8"}>
           {products.map((product) =>
             viewMode === "grid" ? (
               <ShopProductCard key={product.id} product={product} />
@@ -597,10 +597,10 @@ function Pagination({
 
 function Newsletter() {
   return (
-    <section className="bg-[#fbfaf7] px-4 py-20 text-center sm:px-6">
+    <section className="bg-[#fbfaf7] px-4 py-14 text-center sm:px-6 sm:py-20">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
+      <form className="mobile-friendly-form mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -622,7 +622,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
         {brands.map((brand) => (
           <span
             key={brand}
-            className="border-b border-r border-[#e5e5e5] py-8 font-serif text-xl font-bold uppercase tracking-[0.06em] text-[#6f6f6f] lg:border-b-0"
+            className="mobile-brand-tile border-b border-r border-[#e5e5e5] px-2 py-5 font-serif text-base font-bold uppercase tracking-[0.04em] text-[#6f6f6f] sm:py-8 sm:text-xl sm:tracking-[0.06em] lg:border-b-0"
           >
             {brand}
           </span>
@@ -635,7 +635,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
 function Footer({ instagramImages }: { instagramImages: string[] }) {
   return (
     <footer className="bg-[#fbfaf7] px-4 pb-10 pt-10 sm:px-6">
-      <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-8 border-b border-[#e8e8e8] pb-12 sm:gap-10 sm:pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">

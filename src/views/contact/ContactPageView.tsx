@@ -89,9 +89,9 @@ function Breadcrumb({ pageTitle }: { pageTitle: string }) {
 
 function ContactIntro() {
   return (
-    <section className="mx-auto max-w-4xl px-4 pb-10 pt-16 text-center sm:px-6 lg:pb-14 lg:pt-24">
+    <section className="mx-auto max-w-4xl px-4 pb-8 pt-10 text-center sm:px-6 sm:pb-10 sm:pt-16 lg:pb-14 lg:pt-24">
       <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-[#aa9737]">We are here to help</p>
-      <h1 className="mt-3 font-serif text-4xl font-bold uppercase leading-tight text-[#252a31] sm:text-5xl">
+      <h1 className="mt-3 font-serif text-3xl font-bold uppercase leading-tight text-[#252a31] sm:text-5xl">
         Tell Us About Your Project
       </h1>
       <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-[#68717a]">
@@ -118,7 +118,7 @@ function ContactSection({
   workingHours: string;
 }) {
   return (
-    <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:pb-24">
+    <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-12 sm:px-6 sm:pb-16 lg:grid-cols-[1fr_0.9fr] lg:pb-24">
       <form className="border border-[#eeeeee] bg-white p-5 sm:p-8" onSubmit={onSubmit}>
         <h2 className="font-serif text-2xl font-bold uppercase text-[#252a31]">Send A Message</h2>
         <div className="mt-7 grid gap-4 sm:grid-cols-2">
@@ -244,7 +244,7 @@ function Newsletter() {
     <section className="bg-white px-4 py-16 text-center sm:px-6">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white" onSubmit={(event) => event.preventDefault()}>
+      <form className="mobile-friendly-form mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -267,7 +267,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
         {brands.map((brand) => (
           <span
             key={brand}
-            className="border-b border-r border-[#e5e5e5] py-8 font-serif text-xl font-bold uppercase tracking-[0.06em] text-[#6f6f6f] lg:border-b-0"
+            className="mobile-brand-tile border-b border-r border-[#e5e5e5] px-2 py-5 font-serif text-base font-bold uppercase tracking-[0.04em] text-[#6f6f6f] sm:py-8 sm:text-xl sm:tracking-[0.06em] lg:border-b-0"
           >
             {brand}
           </span>
@@ -280,7 +280,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
 function Footer({ instagramImages }: { instagramImages: string[] }) {
   return (
     <footer className="bg-white px-4 pb-10 pt-10 sm:px-6">
-      <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-8 border-b border-[#e8e8e8] pb-12 sm:gap-10 sm:pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">

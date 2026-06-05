@@ -117,7 +117,7 @@ function Hero() {
   }
 
   return (
-    <section className="relative isolate overflow-hidden bg-white px-3 py-4 sm:px-5 lg:py-6">
+    <section className="relative isolate overflow-hidden bg-white px-3 py-3 sm:px-5 lg:py-6">
       <button
         aria-label="Previous hero"
         className="absolute left-5 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/70 bg-white/80 text-[#252a31] shadow-lg backdrop-blur transition hover:-translate-x-0.5 hover:bg-[#252a31] hover:text-white md:grid"
@@ -136,7 +136,7 @@ function Hero() {
       </button>
 
       <div
-        className="relative mx-auto min-h-[520px] max-w-[1520px] overflow-hidden rounded-[34px] shadow-[0_28px_90px_rgba(37,42,49,0.1)] transition-colors duration-700 md:min-h-[560px]"
+        className="relative mx-auto max-w-[1520px] overflow-hidden rounded-[24px] shadow-[0_20px_55px_rgba(37,42,49,0.09)] transition-colors duration-700 sm:rounded-[34px] md:min-h-[560px] md:shadow-[0_28px_90px_rgba(37,42,49,0.1)]"
         style={{ background: slide.background }}
       >
         {heroSlides.map((heroSlide, index) => {
@@ -145,30 +145,30 @@ function Hero() {
           return (
             <article
               aria-hidden={!isActive}
-              className={`absolute inset-0 grid items-center gap-8 px-6 py-14 transition-all duration-700 ease-out sm:px-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-24 ${
-                isActive ? "translate-x-0 opacity-100" : "pointer-events-none translate-x-8 opacity-0"
+              className={`inset-0 grid items-center gap-5 px-4 pb-16 pt-8 transition-all duration-700 ease-out sm:gap-8 sm:px-10 sm:py-14 md:absolute lg:grid-cols-[0.92fr_1.08fr] lg:px-24 ${
+                isActive ? "relative translate-x-0 opacity-100 md:absolute" : "pointer-events-none absolute translate-x-8 opacity-0"
               }`}
               key={heroSlide.title}
             >
               <div className="order-2 mx-auto max-w-xl text-center lg:order-1 lg:mx-0 lg:text-left">
-                <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:justify-start">
                   <p
-                    className="rounded-full px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em]"
+                    className="rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.14em] sm:px-4 sm:text-[11px] sm:tracking-[0.2em]"
                     style={{ backgroundColor: heroSlide.accentSoft, color: heroSlide.accent }}
                   >
                     {heroSlide.eyebrow}
                   </p>
-                  <span className="rounded-full border border-white/70 bg-white/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#5f666d] shadow-sm backdrop-blur">
+                  <span className="rounded-full border border-white/70 bg-white/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.1em] text-[#5f666d] shadow-sm backdrop-blur sm:px-4 sm:text-[11px] sm:tracking-[0.14em]">
                     {heroSlide.badge}
                   </span>
                 </div>
-                <h1 className="mt-4 text-balance font-sans text-4xl font-black leading-[0.95] tracking-[-0.02em] text-[#252a31] sm:text-5xl lg:text-6xl">
+                <h1 className="mt-4 text-balance font-sans text-[2.15rem] font-black leading-[1.02] text-[#252a31] sm:text-5xl lg:text-6xl">
                   {heroSlide.title}
                 </h1>
-                <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-[#5f666d] lg:mx-0">
+                <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-[#5f666d] lg:mx-0">
                   {heroSlide.description}
                 </p>
-                <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+                <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
                   <a
                     className="inline-flex h-12 items-center justify-center rounded-full bg-[#20242a] px-9 text-[12px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_14px_28px_rgba(32,36,42,0.18)] transition hover:-translate-y-0.5 hover:bg-[#aa9737]"
                     href="#products"
@@ -180,15 +180,15 @@ function Hero() {
               </div>
 
               <div className="order-1 mx-auto flex w-full max-w-[620px] justify-center lg:order-2">
-                <div className="relative h-[280px] w-full max-w-[420px] sm:h-[360px] sm:max-w-[520px] lg:h-[500px] lg:max-w-[640px]">
+                <div className="relative h-[245px] w-full max-w-[360px] sm:h-[360px] sm:max-w-[520px] lg:h-[500px] lg:max-w-[640px]">
                   <div
-                    className={`absolute bottom-4 left-1/2 h-[82%] w-[82%] -translate-x-1/2 rounded-[44%_56%_48%_52%/54%_44%_56%_46%] opacity-75 blur-0 transition-transform duration-700 ${
+                    className={`absolute bottom-4 left-1/2 h-[80%] w-[82%] -translate-x-1/2 rounded-[44%_56%_48%_52%/54%_44%_56%_46%] opacity-75 blur-0 transition-transform duration-700 ${
                       isActive ? "scale-100" : "scale-95"
                     }`}
                     style={{ backgroundColor: heroSlide.blob }}
                   />
                   <div
-                    className={`absolute inset-x-5 bottom-4 top-2 z-10 overflow-hidden rounded-[42%_58%_44%_56%/58%_44%_56%_42%] border-[10px] border-white/55 bg-white shadow-[0_30px_70px_rgba(37,42,49,0.16)] transition duration-700 sm:inset-x-8 ${
+                    className={`absolute inset-x-4 bottom-4 top-1 z-10 overflow-hidden rounded-[42%_58%_44%_56%/58%_44%_56%_42%] border-[7px] border-white/55 bg-white shadow-[0_24px_48px_rgba(37,42,49,0.14)] transition duration-700 sm:inset-x-8 sm:top-2 sm:border-[10px] sm:shadow-[0_30px_70px_rgba(37,42,49,0.16)] ${
                       isActive ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-95 opacity-0"
                     }`}
                   >
@@ -201,9 +201,9 @@ function Hero() {
                       src={heroSlide.image}
                     />
                   </div>
-                  <div className="absolute bottom-9 right-3 z-20 rounded-2xl border border-white/70 bg-white/85 px-4 py-3 text-left shadow-[0_18px_40px_rgba(37,42,49,0.12)] backdrop-blur sm:right-10">
-                    <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-[#8b928c]">Mugnee Picks</span>
-                    <strong className="mt-1 block font-serif text-xl text-[#252a31]">{heroSlide.metric}</strong>
+                  <div className="absolute bottom-6 right-1 z-20 rounded-2xl border border-white/70 bg-white/88 px-3 py-2.5 text-left shadow-[0_14px_30px_rgba(37,42,49,0.12)] backdrop-blur sm:bottom-9 sm:right-10 sm:px-4 sm:py-3">
+                    <span className="block text-[9px] font-bold uppercase tracking-[0.14em] text-[#8b928c] sm:text-[10px] sm:tracking-[0.18em]">Mugnee Picks</span>
+                    <strong className="mt-1 block font-serif text-base text-[#252a31] sm:text-xl">{heroSlide.metric}</strong>
                   </div>
                 </div>
               </div>
@@ -211,7 +211,7 @@ function Hero() {
           );
         })}
 
-        <div className="absolute bottom-7 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
+        <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3 sm:bottom-7">
           {heroSlides.map((heroSlide, index) => (
             <button
               aria-label={`Go to ${heroSlide.title}`}
@@ -276,12 +276,12 @@ function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string })
 
 function CategorySection({ categories }: { categories: Category[] }) {
   return (
-    <section className="bg-white px-4 py-20 sm:px-6">
+    <section className="bg-white px-4 py-14 sm:px-6 sm:py-20">
       <SectionHeading title="Hot Categories on Today" />
-      <div className="mx-auto mt-12 grid max-w-5xl gap-10 md:grid-cols-3">
+      <div className="mx-auto mt-9 grid max-w-5xl gap-6 sm:mt-12 md:grid-cols-3 md:gap-10">
         {categories.map((category) => (
-          <article key={category.name} className="group rounded-[28px] border border-[#eee7da] bg-[#fffdf9] p-7 text-center shadow-sm transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(37,42,49,0.12)]">
-            <div className="mx-auto h-48 w-48 overflow-hidden rounded-full border border-dashed border-[#bb8b21] bg-white p-2">
+          <article key={category.name} className="group rounded-[22px] border border-[#eee7da] bg-[#fffdf9] p-5 text-center shadow-sm transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(37,42,49,0.12)] sm:rounded-[28px] sm:p-7">
+            <div className="mx-auto h-36 w-36 overflow-hidden rounded-full border border-dashed border-[#bb8b21] bg-white p-2 sm:h-48 sm:w-48">
               <Image
                 alt={category.name}
                 className="h-full w-full rounded-full object-cover transition duration-500 group-hover:scale-105"
@@ -345,14 +345,14 @@ function PromoRibbon() {
 
 function ProductSection({ products }: { products: Product[] }) {
   return (
-    <section id="products" className="bg-white px-4 py-20 sm:px-6">
+    <section id="products" className="bg-white px-4 py-14 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto mb-12 flex w-fit flex-wrap items-center justify-center gap-2 rounded-full border border-[#eee7da] bg-[#fbfaf7] p-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8e8374]">
-          <button className="rounded-full bg-white px-5 py-3 text-[#b98b20] shadow-sm" type="button">New Arrivals</button>
-          <button className="rounded-full px-5 py-3 hover:bg-white hover:text-[#b98b20]" type="button">Best Sellers</button>
-          <button className="rounded-full px-5 py-3 hover:bg-white hover:text-[#b98b20]" type="button">Featured Products</button>
+        <div className="mx-auto mb-9 flex w-full max-w-md flex-wrap items-center justify-center gap-2 rounded-2xl border border-[#eee7da] bg-[#fbfaf7] p-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#8e8374] sm:mb-12 sm:w-fit sm:max-w-none sm:rounded-full sm:text-[11px] sm:tracking-[0.18em]">
+          <button className="rounded-full bg-white px-4 py-3 text-[#b98b20] shadow-sm sm:px-5" type="button">New Arrivals</button>
+          <button className="rounded-full px-4 py-3 hover:bg-white hover:text-[#b98b20] sm:px-5" type="button">Best Sellers</button>
+          <button className="rounded-full px-4 py-3 hover:bg-white hover:text-[#b98b20] sm:px-5" type="button">Featured Products</button>
         </div>
-        <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -431,7 +431,7 @@ function ProductCard({ product }: { product: Product }) {
 
 function FeatureTiles({ tiles }: { tiles: PromoTile[] }) {
   return (
-    <section className="bg-white px-4 pb-20 sm:px-6">
+    <section className="bg-white px-4 pb-14 sm:px-6 sm:pb-20">
       <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-3">
         {tiles.map((tile) => (
           <article key={tile.title} className="border border-[#ece4d6] bg-white p-7 text-center">
@@ -465,7 +465,7 @@ function FeatureTiles({ tiles }: { tiles: PromoTile[] }) {
 
 function WellnessBand() {
   return (
-    <section id="about" className="relative overflow-hidden bg-[#f4f4f3] px-4 py-20 sm:px-6">
+    <section id="about" className="relative overflow-hidden bg-[#f4f4f3] px-4 py-14 sm:px-6 sm:py-20">
       <div className="pointer-events-none absolute -left-24 bottom-0 hidden aspect-[4/3] w-[420px] lg:block">
         <Image
           alt=""
@@ -586,7 +586,7 @@ function Newsletter() {
     <section className="bg-[#fbfaf7] px-4 py-16 text-center sm:px-6">
       <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-[#c0952d]">Newsletter sign up</p>
       <h2 className="mt-2 font-serif text-2xl italic text-[#6a5a40]">Join our care circle</h2>
-      <form className="mx-auto mt-7 flex max-w-md overflow-hidden rounded-full border border-[#dbc994] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
+      <form className="mobile-friendly-form mx-auto mt-7 flex max-w-md overflow-hidden rounded-full border border-[#dbc994] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -606,7 +606,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
     <section id="brands" className="border-y border-[#eee7da] bg-white px-4 py-9 sm:px-6">
       <div className="mx-auto grid max-w-5xl grid-cols-2 gap-5 text-center font-serif text-xl text-[#8f877b] sm:grid-cols-3 lg:grid-cols-6">
         {brands.map((brand) => (
-          <span key={brand} className="border border-[#eee7da] py-4">
+          <span key={brand} className="mobile-brand-tile border border-[#eee7da] px-2 py-4">
             {brand}
           </span>
         ))}

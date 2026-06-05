@@ -27,7 +27,7 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
   return (
     <main className="premium-shell min-h-screen text-[#252a31]">
       <Breadcrumb />
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-28">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 lg:py-28">
         {items.length > 0 ? (
           <>
             <div className="premium-card hidden overflow-hidden rounded-[28px] lg:block">
@@ -81,7 +81,7 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
 
             <div className="grid gap-5 lg:hidden">
               {items.map((item) => (
-                <article key={item.id} className="premium-card grid gap-4 rounded-[24px] p-4 sm:grid-cols-[120px_1fr]">
+                <article key={item.id} className="premium-card grid gap-4 rounded-[22px] p-4 sm:grid-cols-[120px_1fr] sm:rounded-[24px]">
                   <div className="relative mx-auto aspect-square w-32 overflow-hidden rounded-2xl bg-[#f8f8f8]">
                     <Image alt={item.name} className="object-contain" fill sizes="128px" src={item.image} />
                   </div>
@@ -112,7 +112,7 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
               ))}
             </div>
 
-            <div className="mt-14 grid items-start gap-12 lg:grid-cols-[1fr_320px]">
+            <div className="mt-10 grid items-start gap-8 sm:mt-14 lg:grid-cols-[1fr_320px] lg:gap-12">
               <div className="flex flex-wrap items-start gap-4">
                 <button
                   className="inline-flex h-10 shrink-0 items-center justify-center bg-[#273241] px-5 text-[11px] font-bold uppercase leading-none text-white shadow-sm hover:-translate-y-0.5 hover:bg-[#aa9737]"
@@ -131,7 +131,7 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
                   Continue Shopping
                 </Link>
               </div>
-              <aside className="premium-card rounded-[28px] p-7 text-center lg:text-left">
+              <aside className="premium-card rounded-[22px] p-5 text-center sm:rounded-[28px] sm:p-7 lg:text-left">
                 <h1 className="inline-block border-b-2 border-[#252a31] pb-1 font-serif text-3xl uppercase">
                   Cart Totals
                 </h1>
@@ -146,7 +146,7 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
                   </div>
                 </div>
                 <button
-                  className="premium-button mt-8 inline-flex h-12 items-center justify-center rounded-full bg-[#aa9737] px-9 font-serif text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#8d7b28]"
+                  className="premium-button mt-8 inline-flex h-12 w-full items-center justify-center rounded-full bg-[#aa9737] px-6 font-serif text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#8d7b28] sm:w-auto sm:px-9"
                   onClick={() => router.push("/checkout")}
                   type="button"
                 >
@@ -188,7 +188,7 @@ function Newsletter() {
     <section className="bg-[#fbfaf7] px-4 py-16 text-center sm:px-6">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
+      <form className="mobile-friendly-form mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
         <input aria-label="Email address" className="min-w-0 flex-1 px-5 text-sm outline-none" placeholder="Your email address" type="email" />
         <button className="bg-[#aa9737] px-8 text-[12px] font-bold uppercase text-white" type="submit">Subscribe</button>
       </form>
@@ -201,7 +201,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
     <section className="px-4 pb-16 sm:px-6">
       <div className="mx-auto grid max-w-6xl grid-cols-2 border border-[#e5e5e5] bg-white text-center sm:grid-cols-3 lg:grid-cols-6">
         {brands.map((brand) => (
-          <span key={brand} className="border-b border-r border-[#e5e5e5] py-8 font-serif text-xl font-bold uppercase tracking-[0.06em] text-[#6f6f6f] lg:border-b-0">
+          <span key={brand} className="mobile-brand-tile border-b border-r border-[#e5e5e5] px-2 py-5 font-serif text-base font-bold uppercase tracking-[0.04em] text-[#6f6f6f] sm:py-8 sm:text-xl sm:tracking-[0.06em] lg:border-b-0">
             {brand}
           </span>
         ))}
@@ -213,7 +213,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
 function Footer({ instagramImages }: { instagramImages: string[] }) {
   return (
     <footer className="bg-[#fbfaf7] px-4 pb-10 pt-10 sm:px-6">
-      <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-8 border-b border-[#e8e8e8] pb-12 sm:gap-10 sm:pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">

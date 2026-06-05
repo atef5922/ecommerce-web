@@ -23,7 +23,7 @@ export function BlogPageView({ viewModel }: Props) {
   return (
     <main className="min-h-screen bg-white text-[#252a31]">
       <Breadcrumb pageTitle={viewModel.pageTitle} />
-      <section className="mx-auto grid max-w-6xl gap-9 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_260px] lg:py-24">
+      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-[1fr_260px] lg:gap-9 lg:py-24">
         <PostFeed posts={viewModel.posts} />
         <BlogSidebar
           archives={viewModel.archives}
@@ -51,7 +51,7 @@ function Breadcrumb({ pageTitle }: { pageTitle: string }) {
 
 function PostFeed({ posts }: { posts: BlogEntry[] }) {
   return (
-    <section className="space-y-12">
+    <section className="space-y-8 sm:space-y-12">
       {posts.map((post) => (
         <BlogPostCard key={post.id} post={post} />
       ))}
@@ -72,12 +72,12 @@ function PostFeed({ posts }: { posts: BlogEntry[] }) {
 
 function BlogPostCard({ post }: { post: BlogEntry }) {
   return (
-    <article className="border border-[#eeeeee] px-5 py-8 text-center sm:px-6">
+    <article className="border border-[#eeeeee] px-4 py-7 text-center sm:px-6 sm:py-8">
       <p className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#aa9737]">
         <Tag size={12} /> {post.category}
       </p>
-      <h1 className="mt-3 font-serif text-2xl font-bold uppercase text-[#252a31]">{post.title}</h1>
-      <p className="mt-3 text-[12px] text-[#68717a]">
+      <h1 className="mt-3 font-serif text-xl font-bold uppercase leading-tight text-[#252a31] sm:text-2xl">{post.title}</h1>
+      <p className="mx-auto mt-3 max-w-md text-[12px] leading-6 text-[#68717a]">
         Posted by {post.author} <span className="mx-3">|</span> {post.date}
       </p>
       <PostMedia post={post} />
@@ -120,7 +120,7 @@ function PostMedia({ post }: { post: BlogEntry }) {
   if (post.format === "audio") {
     return (
       <div className="mx-auto mt-7 max-w-[760px] bg-[#f4ad85] px-4 py-5">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <button className="grid h-9 w-9 place-items-center rounded-full bg-[#f26d21] text-white" type="button">
             ▶
           </button>
@@ -236,7 +236,7 @@ function Newsletter() {
     <section className="bg-white px-4 py-16 text-center sm:px-6">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white" onSubmit={(event) => event.preventDefault()}>
+      <form className="mobile-friendly-form mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -259,7 +259,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
         {brands.map((brand) => (
           <span
             key={brand}
-            className="border-b border-r border-[#e5e5e5] py-8 font-serif text-xl font-bold uppercase tracking-[0.06em] text-[#6f6f6f] lg:border-b-0"
+            className="mobile-brand-tile border-b border-r border-[#e5e5e5] px-2 py-5 font-serif text-base font-bold uppercase tracking-[0.04em] text-[#6f6f6f] sm:py-8 sm:text-xl sm:tracking-[0.06em] lg:border-b-0"
           >
             {brand}
           </span>
@@ -272,7 +272,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
 function Footer({ instagramImages }: { instagramImages: string[] }) {
   return (
     <footer className="bg-white px-4 pb-10 pt-10 sm:px-6">
-      <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-8 border-b border-[#e8e8e8] pb-12 sm:gap-10 sm:pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">

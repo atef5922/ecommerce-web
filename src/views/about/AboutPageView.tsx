@@ -48,7 +48,7 @@ function Breadcrumb({ pageTitle }: { pageTitle: string }) {
 
 function IntroSection() {
   return (
-    <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-24">
+    <section className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-2 lg:items-center lg:gap-10 lg:py-24">
       <div className="relative aspect-[4/3] overflow-hidden bg-[#f4f1ec]">
         <Image
           alt="Commerce team planning Mugnee storefront experience"
@@ -61,7 +61,7 @@ function IntroSection() {
       </div>
       <div className="mx-auto max-w-xl text-center lg:text-left">
         <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-[#aa9737]">Our Story</p>
-        <h1 className="mt-3 font-serif text-4xl font-bold uppercase leading-tight text-[#252a31] sm:text-5xl">
+        <h1 className="mt-3 font-serif text-3xl font-bold uppercase leading-tight text-[#252a31] sm:text-5xl">
           We Create Better Commerce Experiences.
         </h1>
         <p className="mt-6 text-sm leading-8 text-[#68717a]">
@@ -104,13 +104,13 @@ function MetricsSection({ metrics }: { metrics: AboutMetric[] }) {
           return (
             <article
               key={metric.label}
-              className={`flex min-h-40 items-center justify-center gap-5 px-7 py-8 ${
+              className={`flex min-h-32 items-center justify-center gap-4 px-5 py-6 sm:min-h-40 sm:gap-5 sm:px-7 sm:py-8 ${
                 index % 2 === 1 ? "bg-[#eeeeee]" : "bg-[#f7f7f7]"
               }`}
             >
               <Icon className="shrink-0 text-[#6a6a6a]" size={42} />
               <div>
-                <p className="font-serif text-4xl font-bold text-[#353535]">{metric.value}</p>
+                <p className="font-serif text-3xl font-bold text-[#353535] sm:text-4xl">{metric.value}</p>
                 <h2 className="mt-2 text-[12px] font-bold uppercase tracking-[0.14em] text-[#4d4d4d]">{metric.label}</h2>
               </div>
             </article>
@@ -123,7 +123,7 @@ function MetricsSection({ metrics }: { metrics: AboutMetric[] }) {
 
 function SkillsSection({ skills }: { skills: SkillMetric[] }) {
   return (
-    <section className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-20">
+    <section className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-2 lg:items-center lg:gap-10 lg:py-20">
       <div>
         <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-[#aa9737]">What We Do Well</p>
         <h2 className="mt-3 font-serif text-3xl font-bold uppercase text-[#252a31]">We Have Skills To Show</h2>
@@ -160,7 +160,7 @@ function Newsletter() {
     <section className="bg-white px-4 py-16 text-center sm:px-6">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white" onSubmit={(event) => event.preventDefault()}>
+      <form className="mobile-friendly-form mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -183,7 +183,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
         {brands.map((brand) => (
           <span
             key={brand}
-            className="border-b border-r border-[#e5e5e5] py-8 font-serif text-xl font-bold uppercase tracking-[0.06em] text-[#6f6f6f] lg:border-b-0"
+            className="mobile-brand-tile border-b border-r border-[#e5e5e5] px-2 py-5 font-serif text-base font-bold uppercase tracking-[0.04em] text-[#6f6f6f] sm:py-8 sm:text-xl sm:tracking-[0.06em] lg:border-b-0"
           >
             {brand}
           </span>
@@ -196,7 +196,7 @@ function BrandStrip({ brands }: { brands: string[] }) {
 function Footer({ instagramImages }: { instagramImages: string[] }) {
   return (
     <footer className="bg-white px-4 pb-10 pt-10 sm:px-6">
-      <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-8 border-b border-[#e8e8e8] pb-12 sm:gap-10 sm:pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">
