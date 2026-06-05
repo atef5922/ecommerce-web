@@ -124,9 +124,10 @@ function SharedHeader() {
               {searchOpen ? <X size={19} /> : <Search size={19} />}
             </button>
             <Link
-              className="hidden items-center gap-2 rounded-full border border-[#eee7da] bg-white px-4 py-2 text-[12px] font-bold shadow-sm hover:border-[#aa9737] hover:text-[#aa9737] sm:inline-flex"
+              className="inline-flex items-center gap-2 rounded-full border border-[#eee7da] bg-white px-2 py-2 text-[12px] font-bold shadow-sm hover:border-[#aa9737] hover:text-[#aa9737] sm:px-4"
               href="/cart"
               onClick={closeTransientPanels}
+              aria-label={`Cart with ${itemCount} items`}
             >
               <span className="relative grid h-8 w-8 place-items-center rounded-full bg-[#f5efdf]">
                 <ShoppingBasket className="text-[#a99734]" size={17} />
@@ -136,7 +137,7 @@ function SharedHeader() {
                   </span>
                 ) : null}
               </span>
-              Cart ({itemCount}) - {formatMoney(subtotal)}
+              <span className="hidden sm:inline">Cart ({itemCount}) - {formatMoney(subtotal)}</span>
             </Link>
             <div className="hidden sm:block lg:hidden">
               <CurrencySelect currency={currency} setCurrency={setCurrency} compact />
@@ -176,9 +177,9 @@ function SharedHeader() {
               </Link>
             ))}
             <div className="mt-2 flex flex-wrap items-center gap-4 border-t border-[#eeeeee] pt-4 text-xs">
-              <Link href="#" onClick={closeTransientPanels}>My Account</Link>
+              <Link href="/account" onClick={closeTransientPanels}>My Account</Link>
               <Link href="/checkout" onClick={closeTransientPanels}>Checkout</Link>
-              <Link href="#" onClick={closeTransientPanels}>Sign In</Link>
+              <Link href="/account" onClick={closeTransientPanels}>Sign In</Link>
               <Link href="/cart" onClick={closeTransientPanels}>Cart ({itemCount})</Link>
               <CurrencySelect currency={currency} setCurrency={setCurrency} compact />
             </div>
@@ -239,9 +240,9 @@ function SearchPanel({
 
 function AccountMenu({ onNavigate }: { onNavigate: () => void }) {
   const links = [
-    { href: "#", label: "My Account" },
+    { href: "/account", label: "My Account" },
     { href: "/checkout", label: "Checkout" },
-    { href: "#", label: "Sign In" },
+    { href: "/account", label: "Sign In" },
   ];
 
   return (

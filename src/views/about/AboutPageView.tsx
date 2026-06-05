@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AlarmClock,
   Mail,
@@ -158,7 +160,7 @@ function Newsletter() {
     <section className="bg-white px-4 py-16 text-center sm:px-6">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white">
+      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#cccccc] bg-white" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -196,7 +198,7 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
     <footer className="bg-white px-4 pb-10 pt-10 sm:px-6">
       <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h2 className="font-serif text-lg uppercase">Contact Infor</h2>
+          <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">
             <li className="flex gap-3"><MapPin className="mt-1 shrink-0" size={16} /> 123 Main Street, Anytown, CA 12345 - USA.</li>
             <li className="flex gap-3"><Phone className="mt-1 shrink-0" size={16} /> (+1)866-550-3669</li>
@@ -242,13 +244,27 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
 }
 
 function FooterLinks({ title, links }: { title: string; links: string[] }) {
+  const hrefByLabel: Record<string, string> = {
+    "About us": "/about",
+    "Best sales": "/shop",
+    "Contact us": "/contact",
+    Delivery: "/contact",
+    Login: "/account",
+    "My account": "/account",
+    "New products": "/shop",
+    "Prices drop": "/shop",
+    "Secure payment": "/checkout",
+    Stores: "/contact",
+    "Terms and conditions of use": "/contact",
+  };
+
   return (
     <div>
       <h2 className="font-serif text-lg uppercase">{title}</h2>
       <ul className="mt-6 list-disc space-y-2 pl-4 text-sm text-[#68717a]">
         {links.map((link) => (
           <li key={link}>
-            <a className="transition hover:text-[#aa9737]" href="#">
+            <a className="transition hover:text-[#aa9737]" href={hrefByLabel[link] ?? "/shop"}>
               {link}
             </a>
           </li>

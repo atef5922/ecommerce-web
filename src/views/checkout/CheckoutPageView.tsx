@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,14 +13,24 @@ type Props = {
 };
 
 export function CheckoutPageView({ brandMarks, instagramImages }: Props) {
+  const [status, setStatus] = useState<string | null>(null);
   const { formatMoney } = useCurrency();
   const { items, subtotal } = useCart();
+
+  function placeOrder(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus(
+      items.length > 0
+        ? "Thanks. Your order details are ready for processing."
+        : "Add at least one product to your cart before placing an order.",
+    );
+  }
 
   return (
     <main className="premium-shell min-h-screen text-[#252a31]">
       <Breadcrumb />
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_380px] lg:py-24">
-        <form className="premium-card rounded-[28px] p-5 sm:p-8" onSubmit={(event) => event.preventDefault()}>
+        <form className="premium-card rounded-[28px] p-5 sm:p-8" onSubmit={placeOrder}>
           <h1 className="font-serif text-3xl font-bold uppercase">Billing Details</h1>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <Field label="First name" />
@@ -34,6 +45,9 @@ export function CheckoutPageView({ brandMarks, instagramImages }: Props) {
             <input className="h-12 w-full rounded-2xl bg-[#f5f5f5] px-4 text-sm outline-none focus:ring-1 focus:ring-[#aa9737]" placeholder="Street address" />
           </label>
           <textarea className="mt-4 min-h-36 w-full rounded-2xl bg-[#f5f5f5] px-4 py-4 text-sm outline-none focus:ring-1 focus:ring-[#aa9737]" placeholder="Order notes" />
+          {status ? (
+            <p className="mt-4 rounded-2xl bg-[#f8f6ee] px-4 py-3 text-sm text-[#4b5158]">{status}</p>
+          ) : null}
           <button className="premium-button mt-6 rounded-full bg-[#aa9737] px-8 py-3 text-[12px] font-bold uppercase text-white transition hover:-translate-y-0.5 hover:bg-[#8d7b28]" type="submit">
             Place Order
           </button>
@@ -119,7 +133,7 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
     <footer className="bg-[#fbfaf7] px-4 pb-10 pt-10 sm:px-6">
       <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h2 className="font-serif text-lg uppercase">Contact Infor</h2>
+          <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">
             <li className="flex gap-3"><MapPin className="mt-1 shrink-0" size={16} /> 123 Main Street, Anytown, CA 12345 - USA.</li>
             <li className="flex gap-3"><Phone className="mt-1 shrink-0" size={16} /> (+1)866-550-3669</li>
@@ -144,12 +158,26 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
 }
 
 function FooterLinks({ title, links }: { title: string; links: string[] }) {
+  const hrefByLabel: Record<string, string> = {
+    "About us": "/about",
+    "Best sales": "/shop",
+    "Contact us": "/contact",
+    Delivery: "/contact",
+    Login: "/account",
+    "My account": "/account",
+    "New products": "/shop",
+    "Prices drop": "/shop",
+    "Secure payment": "/checkout",
+    Stores: "/contact",
+    "Terms and conditions of use": "/contact",
+  };
+
   return (
     <div>
       <h2 className="font-serif text-lg uppercase">{title}</h2>
       <ul className="mt-6 list-disc space-y-2 pl-4 text-sm text-[#68717a]">
         {links.map((link) => (
-          <li key={link}><a className="transition hover:text-[#aa9737]" href="#">{link}</a></li>
+          <li key={link}><a className="transition hover:text-[#aa9737]" href={hrefByLabel[link] ?? "/shop"}>{link}</a></li>
         ))}
       </ul>
     </div>

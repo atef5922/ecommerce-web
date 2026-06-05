@@ -394,10 +394,13 @@ function ProductCard({ product }: { product: Product }) {
           width={416}
         />
         <div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/18" />
-        <span className="absolute left-1/2 top-1/2 z-20 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 place-items-center rounded-full bg-[#b2a13b] text-white opacity-0 shadow-lg transition duration-300 group-hover:scale-100 group-hover:opacity-100">
+        <span className="absolute left-1/2 top-1/2 z-20 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 place-items-center rounded-full bg-[#b2a13b] text-white opacity-0 shadow-lg transition duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100">
           <Search size={22} />
         </span>
-        <div className="absolute inset-x-0 bottom-4 z-20 flex justify-center gap-0.5 text-white drop-shadow">
+        <div
+          aria-label={`${product.rating} out of 5 stars`}
+          className="absolute inset-x-0 bottom-4 z-20 flex translate-y-2 justify-center gap-0.5 text-white opacity-0 drop-shadow transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+        >
           {Array.from({ length: 5 }).map((_, index) => (
             <Star key={index} size={20} fill={index < product.rating ? "currentColor" : "none"} />
           ))}
@@ -416,7 +419,7 @@ function ProductCard({ product }: { product: Product }) {
         <span className="font-bold text-[#b98b20]">{formatMoney(product.price)}</span>
       </p>
       <button
-        className="mt-4 inline-flex h-10 min-w-44 translate-y-1 items-center justify-center rounded-full border border-[#d6d6d6] bg-white px-7 font-serif text-sm font-bold uppercase text-[#5a5147] opacity-100 shadow-sm transition duration-300 hover:border-[#aa9737] hover:bg-[#aa9737] hover:text-white group-hover:translate-y-0 group-hover:border-[#aa9737] group-hover:bg-[#aa9737] group-hover:text-white md:opacity-0 md:group-hover:opacity-100"
+        className="mt-4 inline-flex h-10 min-w-44 translate-y-1 cursor-pointer items-center justify-center rounded-full border border-[#d6d6d6] bg-white px-7 font-serif text-sm font-bold uppercase text-[#5a5147] opacity-100 shadow-sm transition duration-300 hover:border-[#aa9737] hover:bg-[#aa9737] hover:text-white group-hover:translate-y-0 group-hover:border-[#aa9737] group-hover:bg-[#aa9737] group-hover:text-white group-focus-within:translate-y-0 group-focus-within:border-[#aa9737] group-focus-within:bg-[#aa9737] group-focus-within:text-white md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
         onClick={handleAddToCart}
         type="button"
       >
@@ -583,7 +586,7 @@ function Newsletter() {
     <section className="bg-[#fbfaf7] px-4 py-16 text-center sm:px-6">
       <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-[#c0952d]">Newsletter sign up</p>
       <h2 className="mt-2 font-serif text-2xl italic text-[#6a5a40]">Join our care circle</h2>
-      <form className="mx-auto mt-7 flex max-w-md overflow-hidden rounded-full border border-[#dbc994] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]">
+      <form className="mx-auto mt-7 flex max-w-md overflow-hidden rounded-full border border-[#dbc994] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -626,10 +629,10 @@ function Footer() {
           <div key={title}>
             <h3 className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#3f382e]">{title}</h3>
             <ul className="mt-4 space-y-2 text-sm text-[#746b5f]">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">Delivery</a></li>
-              <li><a href="#">Support</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/shop">Shop</a></li>
+              <li><a href="/contact">Delivery</a></li>
+              <li><a href="/contact">Support</a></li>
             </ul>
           </div>
         ))}

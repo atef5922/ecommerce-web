@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Mail, MapPin, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,8 +15,14 @@ type Props = {
 
 export function CartPageView({ brandMarks, instagramImages }: Props) {
   const router = useRouter();
+  const [cartStatus, setCartStatus] = useState<string | null>(null);
   const { formatMoney } = useCurrency();
   const { items, removeFromCart, subtotal, updateQuantity } = useCart();
+
+  function updateItemQuantity(id: string, quantity: number) {
+    updateQuantity(id, quantity);
+    setCartStatus(null);
+  }
 
   return (
     <main className="premium-shell min-h-screen text-[#252a31]">
@@ -50,7 +57,7 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
                           aria-label={`Quantity for ${item.name}`}
                           className="h-10 w-16 rounded-xl bg-[#f0eee9] px-3 text-left outline-none focus:ring-1 focus:ring-[#aa9737]"
                           min={1}
-                          onChange={(event) => updateQuantity(item.id, Number(event.target.value))}
+                          onChange={(event) => updateItemQuantity(item.id, Number(event.target.value))}
                           type="number"
                           value={item.quantity}
                         />
@@ -87,7 +94,7 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
                       <input
                         className="h-10 w-16 rounded-xl bg-[#f0eee9] px-3 outline-none focus:ring-1 focus:ring-[#aa9737]"
                         min={1}
-                        onChange={(event) => updateQuantity(item.id, Number(event.target.value))}
+                        onChange={(event) => updateItemQuantity(item.id, Number(event.target.value))}
                         type="number"
                         value={item.quantity}
                       />
@@ -109,10 +116,14 @@ export function CartPageView({ brandMarks, instagramImages }: Props) {
               <div className="flex flex-wrap items-start gap-4">
                 <button
                   className="inline-flex h-10 shrink-0 items-center justify-center bg-[#273241] px-5 text-[11px] font-bold uppercase leading-none text-white shadow-sm hover:-translate-y-0.5 hover:bg-[#aa9737]"
+                  onClick={() => setCartStatus("Your cart is up to date.")}
                   type="button"
                 >
                   Update Cart
                 </button>
+                {cartStatus ? (
+                  <p className="basis-full text-sm font-semibold text-[#7d6d20] lg:basis-auto">{cartStatus}</p>
+                ) : null}
                 <Link
                   className="inline-flex h-10 shrink-0 items-center justify-center bg-[#273241] px-5 text-[11px] font-bold uppercase leading-none text-white shadow-sm hover:-translate-y-0.5 hover:bg-[#aa9737]"
                   href="/shop"
@@ -177,7 +188,7 @@ function Newsletter() {
     <section className="bg-[#fbfaf7] px-4 py-16 text-center sm:px-6">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]">
+      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
         <input aria-label="Email address" className="min-w-0 flex-1 px-5 text-sm outline-none" placeholder="Your email address" type="email" />
         <button className="bg-[#aa9737] px-8 text-[12px] font-bold uppercase text-white" type="submit">Subscribe</button>
       </form>
@@ -204,7 +215,7 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
     <footer className="bg-[#fbfaf7] px-4 pb-10 pt-10 sm:px-6">
       <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h2 className="font-serif text-lg uppercase">Contact Infor</h2>
+          <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">
             <li className="flex gap-3"><MapPin className="mt-1 shrink-0" size={16} /> 123 Main Street, Anytown, CA 12345 - USA.</li>
             <li className="flex gap-3"><Phone className="mt-1 shrink-0" size={16} /> (+1)866-550-3669</li>
@@ -238,12 +249,26 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
 }
 
 function FooterLinks({ title, links }: { title: string; links: string[] }) {
+  const hrefByLabel: Record<string, string> = {
+    "About us": "/about",
+    "Best sales": "/shop",
+    "Contact us": "/contact",
+    Delivery: "/contact",
+    Login: "/account",
+    "My account": "/account",
+    "New products": "/shop",
+    "Prices drop": "/shop",
+    "Secure payment": "/checkout",
+    Stores: "/contact",
+    "Terms and conditions of use": "/contact",
+  };
+
   return (
     <div>
       <h2 className="font-serif text-lg uppercase">{title}</h2>
       <ul className="mt-6 list-disc space-y-2 pl-4 text-sm text-[#68717a]">
         {links.map((link) => (
-          <li key={link}><a className="transition hover:text-[#aa9737]" href="#">{link}</a></li>
+          <li key={link}><a className="transition hover:text-[#aa9737]" href={hrefByLabel[link] ?? "/shop"}>{link}</a></li>
         ))}
       </ul>
     </div>

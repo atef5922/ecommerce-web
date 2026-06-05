@@ -448,10 +448,13 @@ function ShopProductCard({ product }: { product: ShopProduct }) {
           src={product.image}
         />
         <div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/18" />
-        <span className="absolute left-1/2 top-1/2 z-20 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 place-items-center rounded-full bg-[#b2a13b] text-white opacity-0 shadow-lg transition duration-300 group-hover:scale-100 group-hover:opacity-100">
+        <span className="absolute left-1/2 top-1/2 z-20 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 place-items-center rounded-full bg-[#b2a13b] text-white opacity-0 shadow-lg transition duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100">
           <Search size={22} />
         </span>
-        <div className="absolute inset-x-0 bottom-4 z-20 flex justify-center gap-0.5 text-white drop-shadow">
+        <div
+          aria-label={`${product.rating} out of 5 stars`}
+          className="absolute inset-x-0 bottom-4 z-20 flex translate-y-2 justify-center gap-0.5 text-white opacity-0 drop-shadow transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+        >
           {Array.from({ length: 5 }).map((_, index) => (
             <Star key={index} size={20} fill={index < product.rating ? "currentColor" : "none"} />
           ))}
@@ -470,7 +473,7 @@ function ShopProductCard({ product }: { product: ShopProduct }) {
         <span className="font-serif text-base text-[#aa9737]">{formatMoney(product.price)}</span>
       </p>
       <button
-        className="mt-4 inline-flex h-10 min-w-44 translate-y-1 items-center justify-center rounded-full border border-[#d6d6d6] bg-white px-7 font-serif text-sm font-bold uppercase text-[#5a5147] opacity-100 shadow-sm transition duration-300 hover:border-[#aa9737] hover:bg-[#aa9737] hover:text-white group-hover:translate-y-0 group-hover:border-[#aa9737] group-hover:bg-[#aa9737] group-hover:text-white md:opacity-0 md:group-hover:opacity-100"
+        className="mt-4 inline-flex h-10 min-w-44 translate-y-1 cursor-pointer items-center justify-center rounded-full border border-[#d6d6d6] bg-white px-7 font-serif text-sm font-bold uppercase text-[#5a5147] opacity-100 shadow-sm transition duration-300 hover:border-[#aa9737] hover:bg-[#aa9737] hover:text-white group-hover:translate-y-0 group-hover:border-[#aa9737] group-hover:bg-[#aa9737] group-hover:text-white group-focus-within:translate-y-0 group-focus-within:border-[#aa9737] group-focus-within:bg-[#aa9737] group-focus-within:text-white md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
         onClick={handleAddToCart}
         type="button"
       >
@@ -500,6 +503,14 @@ function ShopProductRow({ product }: { product: ShopProduct }) {
           sizes="180px"
           src={product.image}
         />
+        <div
+          aria-label={`${product.rating} out of 5 stars`}
+          className="absolute inset-x-0 bottom-4 z-20 flex translate-y-2 justify-center gap-0.5 text-white opacity-0 drop-shadow transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+        >
+          {Array.from({ length: 5 }).map((_, index) => (
+            <Star key={index} size={18} fill={index < product.rating ? "currentColor" : "none"} />
+          ))}
+        </div>
       </div>
       <div className="text-left">
         <ProductMeta align="left" product={product} />
@@ -589,7 +600,7 @@ function Newsletter() {
     <section className="bg-[#fbfaf7] px-4 py-20 text-center sm:px-6">
       <h2 className="font-serif text-3xl font-bold uppercase text-[#aa9737]">Newsletter Sign Up</h2>
       <p className="mt-2 text-sm text-[#6d747c]">(Get 30% OFF coupon today subscribers)</p>
-      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]">
+      <form className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-full border border-[#ded5c2] bg-white shadow-[0_16px_40px_rgba(37,42,49,0.08)]" onSubmit={(event) => event.preventDefault()}>
         <input
           aria-label="Email address"
           className="min-w-0 flex-1 px-5 text-sm outline-none"
@@ -626,7 +637,7 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
     <footer className="bg-[#fbfaf7] px-4 pb-10 pt-10 sm:px-6">
       <div className="mx-auto grid max-w-6xl gap-10 border-b border-[#e8e8e8] pb-20 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h2 className="font-serif text-lg uppercase">Contact Infor</h2>
+          <h2 className="font-serif text-lg uppercase">Contact Info</h2>
           <ul className="mt-6 space-y-3 text-sm leading-6 text-[#68717a]">
             <li className="flex gap-3"><MapPin className="mt-1 shrink-0" size={16} /> 123 Main Street, Anytown, CA 12345 - USA.</li>
             <li className="flex gap-3"><Phone className="mt-1 shrink-0" size={16} /> (+1)866-550-3669</li>
@@ -672,13 +683,27 @@ function Footer({ instagramImages }: { instagramImages: string[] }) {
 }
 
 function FooterLinks({ title, links }: { title: string; links: string[] }) {
+  const hrefByLabel: Record<string, string> = {
+    "About us": "/about",
+    "Best sales": "/shop",
+    "Contact us": "/contact",
+    Delivery: "/contact",
+    Login: "/account",
+    "My account": "/account",
+    "New products": "/shop",
+    "Prices drop": "/shop",
+    "Secure payment": "/checkout",
+    Stores: "/contact",
+    "Terms and conditions of use": "/contact",
+  };
+
   return (
     <div>
       <h2 className="font-serif text-lg uppercase">{title}</h2>
       <ul className="mt-6 list-disc space-y-2 pl-4 text-sm text-[#68717a]">
         {links.map((link) => (
           <li key={link}>
-            <a className="transition hover:text-[#aa9737]" href="#">
+            <a className="transition hover:text-[#aa9737]" href={hrefByLabel[link] ?? "/shop"}>
               {link}
             </a>
           </li>
