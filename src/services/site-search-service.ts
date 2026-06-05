@@ -1,35 +1,120 @@
 export type SearchItem = {
+  description: string;
   title: string;
   href: string;
-  type: "Page" | "Product" | "Article";
+  type: "Product" | "Article" | "Category" | "Brand";
   keywords: string;
 };
 
 export const searchableItems: SearchItem[] = [
-  { title: "Home", href: "/", type: "Page", keywords: "home beauty skincare wellness ecommerce" },
-  { title: "Shop", href: "/shop", type: "Page", keywords: "shop products catalog filters skincare" },
-  { title: "Blog", href: "/blog", type: "Page", keywords: "blog journal articles guides beauty" },
-  { title: "About Us", href: "/about", type: "Page", keywords: "about company story team" },
-  { title: "Contact", href: "/contact", type: "Page", keywords: "contact support message address email phone" },
-  { title: "Cart", href: "/cart", type: "Page", keywords: "cart basket products checkout" },
-  { title: "Checkout", href: "/checkout", type: "Page", keywords: "checkout billing order payment" },
-  { title: "Hydra Dew Skin Essence", href: "/shop", type: "Product", keywords: "serum essence toner mugnee ritual" },
-  { title: "Renewal Peptide Cream", href: "/shop", type: "Product", keywords: "cream peptide aurelia skincare" },
-  { title: "Blue Clay Rescue Mask", href: "/shop", type: "Product", keywords: "mask clay mugnee pure" },
-  { title: "Gold Ritual Serum", href: "/shop", type: "Product", keywords: "gold ritual serum skincare" },
-  { title: "Blog Image Post", href: "/blog", type: "Article", keywords: "fashion image post journal" },
-  { title: "Post With Gallery", href: "/blog", type: "Article", keywords: "gallery latest style blog" },
-  { title: "Post With Video", href: "/blog", type: "Article", keywords: "video blog beauty" },
+  {
+    title: "Hydra Dew Skin Essence",
+    href: "/shop",
+    type: "Product",
+    description: "Serum essence by Mugnee Ritual",
+    keywords: "serum essence toner hydra dew mugnee ritual skincare glow",
+  },
+  {
+    title: "Renewal Peptide Cream",
+    href: "/shop",
+    type: "Product",
+    description: "Peptide moisturizer by Aurelia Lab",
+    keywords: "cream peptide renewal aurelia skincare moisturizer",
+  },
+  {
+    title: "Soft Veil Hand Balm",
+    href: "/shop",
+    type: "Product",
+    description: "Daily hand care by Flora Care",
+    keywords: "hand balm soft veil flora care lotion",
+  },
+  {
+    title: "Blue Clay Rescue Mask",
+    href: "/shop",
+    type: "Product",
+    description: "Clay mask by Mugnee Pure",
+    keywords: "mask clay blue rescue mugnee pure skincare",
+  },
+  {
+    title: "Gold Ritual Serum",
+    href: "/shop",
+    type: "Product",
+    description: "Premium serum by Mugnee Ritual",
+    keywords: "gold ritual serum skincare luxury mugnee",
+  },
+  {
+    title: "Mountain Soft Body Cream",
+    href: "/shop",
+    type: "Product",
+    description: "Body cream from Graphic Corner",
+    keywords: "mountain soft body cream graphic corner",
+  },
+  {
+    title: "Women",
+    href: "/shop",
+    type: "Category",
+    description: "Body care, fragrance, and bath essentials",
+    keywords: "women body care fragrance bath essentials",
+  },
+  {
+    title: "Men",
+    href: "/shop",
+    type: "Category",
+    description: "Grooming, wash, serum, and skincare",
+    keywords: "men grooming wash serum skincare",
+  },
+  {
+    title: "Health & Beauty",
+    href: "/shop",
+    type: "Category",
+    description: "Beauty formulas and wellness care",
+    keywords: "health beauty skincare wellness cosmetics",
+  },
+  {
+    title: "Mugnee Ritual",
+    href: "/shop",
+    type: "Brand",
+    description: "Signature skincare and ritual products",
+    keywords: "mugnee ritual brand serum essence toner",
+  },
+  {
+    title: "Aurelia Lab",
+    href: "/shop",
+    type: "Brand",
+    description: "Peptide creams and daily care",
+    keywords: "aurelia lab brand peptide cream skincare",
+  },
+  {
+    title: "Seven ingredients for soft winter hands",
+    href: "/blog",
+    type: "Article",
+    description: "Beauty care guide from the journal",
+    keywords: "winter hands ingredients beauty care journal article",
+  },
+  {
+    title: "The sun routine that keeps glow intact",
+    href: "/blog",
+    type: "Article",
+    description: "Routine guide from the Mugnee journal",
+    keywords: "sun routine glow skin article guide",
+  },
+  {
+    title: "Three overnight masks for bright skin",
+    href: "/blog",
+    type: "Article",
+    description: "Skin science article",
+    keywords: "overnight masks bright skin article skincare",
+  },
 ];
 
 export function searchSite(query: string) {
   const normalizedQuery = query.trim().toLowerCase();
 
   if (!normalizedQuery) {
-    return searchableItems.slice(0, 5);
+    return searchableItems.filter((item) => item.type === "Product").slice(0, 5);
   }
 
   return searchableItems
-    .filter((item) => `${item.title} ${item.keywords}`.toLowerCase().includes(normalizedQuery))
+    .filter((item) => `${item.title} ${item.description} ${item.keywords}`.toLowerCase().includes(normalizedQuery))
     .slice(0, 8);
 }

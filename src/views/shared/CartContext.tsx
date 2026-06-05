@@ -23,22 +23,31 @@ function getDesigner(product: CartProduct) {
 }
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(() => {
-    if (typeof window === "undefined") {
-      return [];
-    }
-
-    try {
-      const storedCart = window.localStorage.getItem(storageKey);
-      return storedCart ? (JSON.parse(storedCart) as CartItem[]) : [];
-    } catch {
-      return [];
-    }
-  });
+  const [items, setItems] = useState<CartItem[]>([]);
+  const [cartLoaded, setCartLoaded] = useState(false);
 
   useEffect(() => {
+    queueMicrotask(() => {
+      try {
+        const storedCart = window.localStorage.getItem(storageKey);
+        if (storedCart) {
+          setItems(JSON.parse(storedCart) as CartItem[]);
+        }
+      } catch {
+        setItems([]);
+      } finally {
+        setCartLoaded(true);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!cartLoaded) {
+      return;
+    }
+
     window.localStorage.setItem(storageKey, JSON.stringify(items));
-  }, [items]);
+  }, [cartLoaded, items]);
 
   const value = useMemo<CartContextValue>(() => {
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
