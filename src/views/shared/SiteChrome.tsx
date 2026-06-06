@@ -2,22 +2,32 @@
 
 import { useMemo, useState } from "react";
 import {
+  ArrowRight,
+  BadgePercent,
   ChevronDown,
   CreditCard,
+  Crown,
+  Droplets,
+  Gift,
   Home,
   Info,
+  Layers,
   LogIn,
   Mail,
   Menu,
   MessageCircle,
   Newspaper,
   Phone,
+  ShieldCheck,
   Search,
   ShoppingBasket,
+  Sparkles,
   Store,
+  Truck,
   UserCircle,
   X,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import type { CurrencyCode, NavItem } from "@/models/ecommerce";
 import { currencies } from "@/services/currency-service";
@@ -49,6 +59,26 @@ const mobileNavigation = [
   { label: "About Us", href: "/about", icon: Info },
   { label: "Contact", href: "/contact", icon: MessageCircle },
 ];
+
+const megaMenuCollections = [
+  { label: "New Arrivals", description: "Fresh fashion and beauty drops", href: "/shop", icon: Sparkles },
+  { label: "Premium Skincare", description: "Essences, creams, masks, toner", href: "/shop", icon: Droplets },
+  { label: "Style Essentials", description: "Shirts, tees, knits, resort edits", href: "/shop", icon: Layers },
+  { label: "Gift Sets", description: "Curated boxes for polished gifting", href: "/shop", icon: Gift },
+] as const;
+
+const megaMenuHighlights = [
+  { label: "Free shipping over $59", href: "/contact", icon: Truck },
+  { label: "Limited monthly deals", href: "/shop", icon: BadgePercent },
+  { label: "Verified premium quality", href: "/about", icon: ShieldCheck },
+] as const;
+
+const megaMenuQuickLinks = [
+  { label: "Featured Products", href: "/shop" },
+  { label: "Best Sellers", href: "/shop" },
+  { label: "Beauty Rituals", href: "/blog" },
+  { label: "Support Center", href: "/contact" },
+] as const;
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
@@ -118,16 +148,36 @@ function SharedHeader() {
             </span>
           </Link>
           <nav className="hidden items-center rounded-full border border-[#eee7da] bg-white/80 p-1 text-[12px] font-bold uppercase tracking-[0.08em] shadow-sm lg:flex">
-            {navigation.map((item) => (
-              <Link
-                key={item.label}
-                className="rounded-full px-4 py-2 text-[#2d3238] transition hover:bg-[#f5efdf] hover:text-[#a99734]"
-                href={item.href}
-                onClick={closeTransientPanels}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navigation.map((item) =>
+              item.label === "Features" ? (
+                <div className="group relative" key={item.label}>
+                  <Link
+                    aria-haspopup="true"
+                    className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-[#2d3238] transition hover:bg-[#f5efdf] hover:text-[#a99734] focus:bg-[#f5efdf] focus:text-[#a99734]"
+                    href={item.href}
+                    onClick={closeTransientPanels}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="transition duration-300 group-hover:rotate-180 group-focus-within:rotate-180"
+                      size={13}
+                    />
+                  </Link>
+                  <span className="absolute right-0 top-full hidden h-4 w-64 group-hover:block group-focus-within:block" />
+                  <MegaMenu onNavigate={closeTransientPanels} />
+                </div>
+              ) : (
+                <Link
+                  key={item.label}
+                  className="rounded-full px-4 py-2 text-[#2d3238] transition hover:bg-[#f5efdf] hover:text-[#a99734]"
+                  href={item.href}
+                  onClick={closeTransientPanels}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
           <div className="flex shrink-0 items-center gap-1.5 text-[#343a40] sm:gap-3">
             <button
@@ -202,6 +252,8 @@ function SharedHeader() {
                 })}
               </nav>
 
+              <MobileMegaMenu onNavigate={closeTransientPanels} />
+
               <div className="mt-3 grid gap-2 border-t border-[#eee7da] pt-3 text-[12px] font-bold uppercase tracking-[0.08em] sm:grid-cols-2">
                 <Link
                   className="flex min-h-11 items-center gap-2 rounded-2xl bg-[#252a31] px-3 text-white transition hover:bg-[#aa9737]"
@@ -253,6 +305,159 @@ function SharedHeader() {
         </div>
       ) : null}
     </header>
+  );
+}
+
+function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
+  return (
+    <div className="pointer-events-none absolute right-0 top-[calc(100%+0.85rem)] z-50 w-[min(92vw,940px)] origin-top-right translate-y-2 opacity-0 transition duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+      <div className="overflow-hidden rounded-[28px] border border-[#e8dfcf] bg-white shadow-[0_28px_80px_rgba(37,42,49,0.16)] ring-1 ring-white/80">
+        <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr_0.72fr]">
+          <div className="bg-[#fbfaf7] p-5">
+            <div className="mb-4 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#008181]">Explore features</p>
+                <h2 className="mt-1 font-serif text-2xl italic normal-case tracking-normal text-[#806618]">
+                  Premium shopping paths
+                </h2>
+              </div>
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#252a31] text-white shadow-[0_12px_25px_rgba(37,42,49,0.18)]">
+                <Crown size={18} />
+              </span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {megaMenuCollections.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <Link
+                    className="group/item flex min-h-[92px] items-start gap-3 rounded-[18px] border border-[#eee7da] bg-white p-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-[#008181]/35 hover:shadow-[0_16px_36px_rgba(37,42,49,0.09)]"
+                    href={item.href}
+                    key={item.label}
+                    onClick={onNavigate}
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#e8fff7] text-[#008181] transition group-hover/item:bg-[#008181] group-hover/item:text-white">
+                      <Icon size={17} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[13px] font-black uppercase tracking-[0.08em] text-[#252a31]">
+                        {item.label}
+                      </span>
+                      <span className="mt-1 block text-[12px] font-medium normal-case leading-5 tracking-normal text-[#68717a]">
+                        {item.description}
+                      </span>
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="border-l border-[#eee7da] bg-white p-5">
+            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#aa9737]">Shop smarter</p>
+            <div className="mt-4 grid gap-3">
+              {megaMenuHighlights.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <Link
+                    className="flex min-h-12 items-center gap-3 rounded-[16px] border border-[#f0eadf] px-3 text-[12px] font-black uppercase tracking-[0.08em] text-[#343a40] transition hover:border-[#aa9737] hover:bg-[#fbfaf7] hover:text-[#aa9737]"
+                    href={item.href}
+                    key={item.label}
+                    onClick={onNavigate}
+                  >
+                    <Icon className="shrink-0 text-[#008181]" size={17} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="mt-5 border-t border-[#eee7da] pt-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#8a8a8a]">Quick links</p>
+              <div className="mt-3 grid gap-1">
+                {megaMenuQuickLinks.map((item) => (
+                  <Link
+                    className="inline-flex items-center justify-between rounded-xl px-2 py-2 text-[13px] font-semibold normal-case tracking-normal text-[#4f5962] hover:bg-[#f8f6ee] hover:text-[#008181]"
+                    href={item.href}
+                    key={item.label}
+                    onClick={onNavigate}
+                  >
+                    {item.label}
+                    <ArrowRight size={14} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <Link
+            className="group/promo relative min-h-[320px] overflow-hidden bg-[#e9d9cf] text-white"
+            href="/shop"
+            onClick={onNavigate}
+          >
+            <Image
+              alt="Premium Mugnee skincare and beauty products"
+              className="h-full w-full object-cover opacity-[0.88] transition duration-500 group-hover/promo:scale-105"
+              fill
+              loading="eager"
+              sizes="300px"
+              src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=760&q=82"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1e2227] via-[#1e2227]/44 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#f0d47a]">Limited edit</p>
+              <h3 className="mt-2 font-serif text-2xl italic normal-case leading-7 tracking-normal">
+                Glow care, style picks, and daily deals.
+              </h3>
+              <span className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-[11px] font-black uppercase tracking-[0.12em] text-[#252a31]">
+                Shop now <ArrowRight size={14} />
+              </span>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileMegaMenu({ onNavigate }: { onNavigate: () => void }) {
+  return (
+    <section className="mt-3 border-t border-[#eee7da] pt-3">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#008181]">Features</p>
+        <Link
+          className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-[0.12em] text-[#aa9737]"
+          href="/shop"
+          onClick={onNavigate}
+        >
+          View all <ArrowRight size={13} />
+        </Link>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {megaMenuCollections.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <Link
+              className="flex min-h-14 items-center gap-3 rounded-2xl border border-[#eee7da] bg-white px-3 py-2 text-[#2d3238] shadow-sm transition hover:border-[#008181] hover:text-[#008181]"
+              href={item.href}
+              key={item.label}
+              onClick={onNavigate}
+            >
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#e8fff7] text-[#008181]">
+                <Icon size={16} />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[12px] font-black uppercase tracking-[0.08em]">{item.label}</span>
+                <span className="block truncate text-[11px] font-medium normal-case tracking-normal text-[#68717a]">
+                  {item.description}
+                </span>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
